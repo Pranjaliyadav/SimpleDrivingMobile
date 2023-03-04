@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarMove : MonoBehaviour
 {
@@ -23,4 +24,13 @@ public class CarMove : MonoBehaviour
     {
         steerValue = value;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
 }
