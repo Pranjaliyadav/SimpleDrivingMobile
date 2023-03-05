@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int maxEnergy;
     [SerializeField] private int energyRechargeDuration;
     [SerializeField] private AndroidNotificationHandler androidNotificationHandler;
+    [SerializeField] private iOSNotificationHandler iOSNotificationHandler;
     private int energy;
     private const string ENERGY_KEY = "Energy";
     private const string ENERGY_READY_KEY = "EnergyReady";
@@ -55,6 +56,8 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetString(ENERGY_READY_KEY, energyReady.ToString());
 #if UNITY_ANDROID
             androidNotificationHandler.ScheduleNotification(energyReady);
+#elif UNITY_IOS
+            iOSNotificationHandler.ScheduleNotification(energyRechargeDuration);
 #endif
         }
 
